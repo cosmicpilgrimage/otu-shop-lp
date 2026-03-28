@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アーシングポット | otu-shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --moss: #3a5a40;
+    --sage: #6a8c6a;
+    --light-sage: #a8c5a0;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --earth: #8b6f47;
+    --stone: #c4b49a;
+    --deep: #1e2d1e;
+    --text: #2c3520;
+    --muted: #7a8a72;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #1e2d1e 0%, #2d4a2d 40%, #3a5a40 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(106,140,106,0.25) 0%, transparent 70%);
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--light-sage);
+    letter-spacing: 0.2em;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: clamp(42px, 8vw, 88px);
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: 0.05em;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .hero-title span {
+    color: var(--light-sage);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.15em;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .hero-tagline {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    max-width: 460px;
+    line-height: 2;
+    position: relative;
+    margin-bottom: 56px;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 18px 52px;
+    background: transparent;
+    border: 1px solid var(--light-sage);
+    color: var(--light-sage);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    position: relative;
+    transition: all 0.4s ease;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+  }
+
+  .hero-cta:hover {
+    background: var(--light-sage);
+    color: var(--deep);
+  }
+
+  .scroll-line {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.35);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+
+  .scroll-line::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.35; transform: scaleY(1); }
+    50% { opacity: 0.7; transform: scaleY(1.1); }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--sage);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 40px;
+    background: var(--light-sage);
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.4;
+    color: var(--deep);
+    margin-bottom: 40px;
+  }
+
+  /* WHAT IS */
+  .what-is {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .what-is { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .what-is-visual {
+    aspect-ratio: 4/5;
+    background: linear-gradient(145deg, #2d4a2d, #4a7a4a);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .what-is-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 70%, rgba(168,197,160,0.3) 0%, transparent 70%);
+  }
+
+  .bowl-illustration {
+    width: 200px;
+    height: 200px;
+    position: relative;
+  }
+
+  .what-is-body {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 2;
+    margin-bottom: 32px;
+  }
+
+  .highlight-box {
+    padding: 28px 32px;
+    border-left: 3px solid var(--moss);
+    background: rgba(58,90,64,0.06);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .highlight-box p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 17px;
+    line-height: 2;
+    color: var(--deep);
+  }
+
+  /* REASONS */
+  .reasons-bg {
+    background: linear-gradient(160deg, #1e2d1e, #2d4a2d);
+    margin: 0;
+    max-width: 100%;
+    padding: 100px 24px;
+  }
+
+  .reasons-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .reasons-bg .section-label { color: var(--light-sage); }
+  .reasons-bg .section-label::after { background: var(--light-sage); opacity: 0.5; }
+  .reasons-bg .section-title { color: #fff; }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 768px) {
+    .reasons-grid { grid-template-columns: 1fr; }
+  }
+
+  .reason-card {
+    padding: 40px 32px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s ease;
+  }
+
+  .reason-card:hover {
+    background: rgba(255,255,255,0.08);
+  }
+
+  .reason-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: rgba(168,197,160,0.3);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .reason-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .reason-body {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.9;
+  }
+
+  /* BENEFITS */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 600px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+  }
+
+  .benefit-item {
+    padding: 36px;
+    background: var(--cream);
+    border-radius: 2px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    transition: transform 0.3s ease;
+  }
+
+  .benefit-item:hover {
+    transform: translateY(-4px);
+  }
+
+  .benefit-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    background: var(--moss);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .benefit-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .benefit-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 8px;
+  }
+
+  .benefit-body {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  /* HOW TO */
+  .howto-bg {
+    background: var(--cream);
+    margin: 0;
+    max-width: 100%;
+    padding: 100px 24px;
+  }
+
+  .howto-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .steps-container {
+    margin-top: 56px;
+    display: grid;
+    gap: 0;
+  }
+
+  .step-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    align-items: start;
+    padding: 36px 0;
+    border-bottom: 1px solid rgba(58,90,64,0.12);
+  }
+
+  .step-row:last-child { border-bottom: none; }
+
+  .step-num-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--moss);
+    line-height: 1;
+  }
+
+  .step-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--light-sage);
+    text-transform: uppercase;
+  }
+
+  .step-content {}
+
+  .step-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 10px;
+  }
+
+  .step-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .step-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    background: rgba(58,90,64,0.1);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--moss);
+    letter-spacing: 0.05em;
+    margin-top: 12px;
+  }
+
+  /* PRODUCTS */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  @media (max-width: 768px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+
+  .product-card {
+    background: #fff;
+    border: 1px solid rgba(58,90,64,0.12);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .product-card:hover {
+    border-color: var(--sage);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(58,90,64,0.1);
+  }
+
+  .product-thumb {
+    aspect-ratio: 4/3;
+    background: linear-gradient(145deg, #2d4a2d, #4a7a4a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 80%, rgba(168,197,160,0.25) 0%, transparent 70%);
+  }
+
+  .product-thumb-label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--moss);
+    color: #fff;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 4px 12px;
+    z-index: 1;
+  }
+
+  .product-info {
+    padding: 24px;
+  }
+
+  .product-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+
+  .product-price {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--moss);
+    letter-spacing: 0.02em;
+  }
+
+  .product-price span {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+
+  .product-cta {
+    display: block;
+    margin-top: 16px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--moss);
+    color: var(--moss);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .product-card:hover .product-cta {
+    background: var(--moss);
+    color: #fff;
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    background: linear-gradient(160deg, #1e2d1e, #3a5a40);
+    margin: 0;
+    max-width: 100%;
+    padding: 120px 24px;
+    text-align: center;
+  }
+
+  .final-cta-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .final-cta h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 44px);
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .final-cta p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    line-height: 2;
+    margin-bottom: 48px;
+  }
+
+  .final-cta-btn {
+    display: inline-block;
+    padding: 20px 64px;
+    background: var(--light-sage);
+    color: var(--deep);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .final-cta-btn:hover {
+    background: #fff;
+    color: var(--moss);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--deep);
+    padding: 40px 24px;
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  /* DIVIDER */
+  .natural-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--light-sage);
+    margin: 0 auto 48px;
+  }
+
+  /* FADE IN */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">otu-shop presents</p>
+  <h1 class="hero-title">アーシング<span>ポット</span></h1>
+  <p class="hero-sub">Earthing Pot</p>
+  <p class="hero-tagline">おうちで、大地とつながる。<br>素足を置くだけで始まる、新しい癒しの習慣。</p>
+  <a href="https://otu-shop.stores.jp/" class="hero-cta">商品を見る</a>
+  <div class="scroll-line">scroll</div>
+</div>
+
+<!-- WHAT IS -->
+<section>
+  <div class="what-is fade-in">
+    <div class="what-is-visual">
+      <svg class="bowl-illustration" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="100" cy="130" rx="80" ry="30" fill="rgba(255,255,255,0.06)"/>
+        <path d="M30 90 Q30 160 100 165 Q170 160 170 90 Z" fill="rgba(255,255,255,0.08)" stroke="rgba(168,197,160,0.4)" stroke-width="1"/>
+        <path d="M30 90 Q65 80 100 80 Q135 80 170 90" stroke="rgba(168,197,160,0.5)" stroke-width="1.5" fill="none"/>
+        <ellipse cx="100" cy="90" rx="70" ry="12" fill="rgba(106,140,106,0.3)"/>
+        <!-- grass lines -->
+        <line x1="70" y1="88" x2="65" y2="72" stroke="rgba(168,197,160,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="80" y1="86" x2="78" y2="68" stroke="rgba(168,197,160,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="90" y1="85" x2="92" y2="66" stroke="rgba(168,197,160,0.9)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="100" y1="84" x2="100" y2="65" stroke="rgba(168,197,160,1)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="110" y1="85" x2="108" y2="66" stroke="rgba(168,197,160,0.9)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="120" y1="86" x2="122" y2="68" stroke="rgba(168,197,160,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="130" y1="88" x2="135" y2="72" stroke="rgba(168,197,160,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- crystal -->
+        <polygon points="100,105 108,120 100,125 92,120" fill="rgba(200,220,255,0.3)" stroke="rgba(200,220,255,0.5)" stroke-width="0.5"/>
+      </svg>
+    </div>
+    <div>
+      <p class="section-label">What is Earthing Pot</p>
+      <h2 class="section-title">アーシングポットとは？</h2>
+      <p class="what-is-body">
+        アーシングとは、素足で直接大地に触れることで地球のエネルギーを体に取り込む健康法です。欧米では以前から注目されてきましたが、現代の私たちは靴やフローリング、コンクリートによって常に大地から切り離されています。
+      </p>
+      <p class="what-is-body">
+        otu-shopのアーシングポットは、陶器製の鉢に芝生を育てた室内用アーシングアイテム。素足を芝生に乗せるだけで、まるで森の中にいるような感覚とともに、自律神経を整えリラックスできます。
+      </p>
+      <div class="highlight-box">
+        <p>「毎日忙しくて、外で素足になる時間なんてない。」<br>そんな方のために、おうちで手軽に大地とつながる方法を作りました。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REASONS -->
+<div class="reasons-bg">
+  <div class="reasons-inner">
+    <p class="section-label fade-in">Why Earthing Pot</p>
+    <h2 class="section-title fade-in">アーシングポットを<br>おすすめする理由</h2>
+    <div class="reasons-grid">
+      <div class="reason-card fade-in">
+        <div class="reason-num">01</div>
+        <h3 class="reason-title">おうちで毎日できる</h3>
+        <p class="reason-body">公園や庭がなくてもOK。リビングや寝室に置いて、テレビを見ながら、読書しながら気軽に続けられます。</p>
+      </div>
+      <div class="reason-card fade-in">
+        <div class="reason-num">02</div>
+        <h3 class="reason-title">水晶の浄化パワープラス</h3>
+        <p class="reason-body">アーシング効果に加え、水晶タンブルが持つ浄化作用も期待できる他にはないオリジナル処方です。</p>
+      </div>
+      <div class="reason-card fade-in">
+        <div class="reason-num">03</div>
+        <h3 class="reason-title">インテリアにもなる美しさ</h3>
+        <p class="reason-body">陶器製のシンプルな鉢に芝生が映える佇まいは、空間に自然の息吹をもたらすインテリアとしても◎</p>
+      </div>
+      <div class="reason-card fade-in">
+        <div class="reason-num">04</div>
+        <h3 class="reason-title">届いてすぐ始められる</h3>
+        <p class="reason-body">土・芝・水晶・鉢・ミニじょうろなど必要なものがすべてセット。説明書通りに並べるだけで完成します。</p>
+      </div>
+      <div class="reason-card fade-in">
+        <div class="reason-num">05</div>
+        <h3 class="reason-title">送料無料でお届け</h3>
+        <p class="reason-body">ご注文後、芝生を育ててからお送りするので1週間ほどお時間をいただきますが、送料はすべて無料です。</p>
+      </div>
+      <div class="reason-card fade-in">
+        <div class="reason-num">06</div>
+        <h3 class="reason-title">ミニスコッププレゼント中</h3>
+        <p class="reason-body">今なら購入者全員にミニスコップをプレゼント。芝生のお手入れや土の管理にご活用いただけます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section>
+  <p class="section-label fade-in">Benefits</p>
+  <h2 class="section-title fade-in">アーシングポットの利点</h2>
+  <p style="color:var(--muted); font-size:15px; max-width:560px; line-height:2; margin-bottom:0;" class="fade-in">
+    大地のエネルギーを日常に取り入れることで、体と心に様々な変化が期待できます。
+  </p>
+  <div class="benefits-grid">
+    <div class="benefit-item fade-in">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+      </div>
+      <div>
+        <h3 class="benefit-title">自律神経が整う</h3>
+        <p class="benefit-body">地球の自然電位が体内の電気バランスを調整し、乱れた自律神経をリセット。心身のバランスが整ってきます。</p>
+      </div>
+    </div>
+    <div class="benefit-item fade-in">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-9 9 9 9 0 0 0 9 9 9 9 0 0 0 9-9 9 9 0 0 0-9-9z"/><path d="M12 7v5l3 3"/></svg>
+      </div>
+      <div>
+        <h3 class="benefit-title">疲労回復・睡眠の質向上</h3>
+        <p class="benefit-body">体に蓄積した疲労電気を放電することで、深い眠りに入りやすくなり、翌朝の目覚めが変わります。</p>
+      </div>
+    </div>
+    <div class="benefit-item fade-in">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 14s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="14"/></svg>
+      </div>
+      <div>
+        <h3 class="benefit-title">ストレス軽減</h3>
+        <p class="benefit-body">副交感神経が優位になることで心身がリラックス。毎日5分のアーシングが、ストレスを手放す習慣になります。</p>
+      </div>
+    </div>
+    <div class="benefit-item fade-in">
+      <div class="benefit-icon">
+        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      </div>
+      <div>
+        <h3 class="benefit-title">免疫力・自然治癒力向上</h3>
+        <p class="benefit-body">自然治癒力を高め、免疫力を向上させる可能性が。水晶の浄化作用との相乗効果も期待できます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO -->
+<div class="howto-bg">
+  <div class="howto-inner">
+    <p class="section-label fade-in">How to Use</p>
+    <h2 class="section-title fade-in">届いてからの<br>作り方と使い方</h2>
+    <div class="steps-container">
+      <div class="step-row fade-in">
+        <div class="step-num-wrap">
+          <span class="step-num">1</span>
+          <span class="step-label">STEP</span>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">鉢の底に敷石を敷く</h3>
+          <p class="step-body">陶器の鉢の底に敷石を均一に並べます。水はけをよくするための大切な工程です。</p>
+          <span class="step-tag">所要時間: 約2分</span>
+        </div>
+      </div>
+      <div class="step-row fade-in">
+        <div class="step-num-wrap">
+          <span class="step-num">2</span>
+          <span class="step-label">STEP</span>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">専用の土を入れる</h3>
+          <p class="step-body">敷石の上に専用の土を入れます。鉢の縁から3〜4cm下になるくらいが目安です。</p>
+          <span class="step-tag">所要時間: 約2分</span>
+        </div>
+      </div>
+      <div class="step-row fade-in">
+        <div class="step-num-wrap">
+          <span class="step-num">3</span>
+          <span class="step-label">STEP</span>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">水晶タンブルを置く</h3>
+          <p class="step-body">土の上にお好みで水晶タンブルを配置します。浄化のエネルギーが加わる特別なステップです。</p>
+          <span class="step-tag">所要時間: 約1分</span>
+        </div>
+      </div>
+      <div class="step-row fade-in">
+        <div class="step-num-wrap">
+          <span class="step-num">4</span>
+          <span class="step-label">STEP</span>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">芝生を乗せて水をあげる</h3>
+          <p class="step-body">芝生を土の上にそっと置き、ミニじょうろで優しく水をかけます。土が湿る程度でOKです。</p>
+          <span class="step-tag">所要時間: 約2分</span>
+        </div>
+      </div>
+      <div class="step-row fade-in">
+        <div class="step-num-wrap">
+          <span class="step-num">5</span>
+          <span class="step-label">STEP</span>
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">素足を乗せてリラックス</h3>
+          <p class="step-body">くつろげる場所に置いて、靴下を脱いで素足を芝生の上へ。テレビを見ながら、読書しながら、1日5〜10分からスタート。朝の目覚め後や就寝前がおすすめです。</p>
+          <span class="step-tag">1日5〜10分から</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section>
+  <p class="section-label fade-in">Recommend</p>
+  <h2 class="section-title fade-in">おすすめ商品</h2>
+  <div class="products-grid">
+    <a href="https://otu-shop.stores.jp/" class="product-card fade-in">
+      <div class="product-thumb">
+        <span class="product-thumb-label">NEW</span>
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="position:relative;z-index:1">
+          <ellipse cx="40" cy="55" rx="32" ry="10" fill="rgba(255,255,255,0.06)"/>
+          <path d="M12 36 Q12 64 40 66 Q68 64 68 36 Z" fill="rgba(255,255,255,0.08)" stroke="rgba(168,197,160,0.4)" stroke-width="0.5"/>
+          <ellipse cx="40" cy="36" rx="28" ry="5" fill="rgba(106,140,106,0.5)"/>
+          <line x1="30" y1="35" x2="28" y2="26" stroke="rgba(168,197,160,0.8)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="37" y1="34" x2="36" y2="24" stroke="rgba(168,197,160,0.9)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="44" y1="34" x2="44" y2="23" stroke="rgba(168,197,160,1)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="51" y1="35" x2="52" y2="26" stroke="rgba(168,197,160,0.8)" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-name">水晶入りアーシングポットキット（芝生タイプ）</p>
+        <p class="product-price">¥22,800<span>税込・送料無料</span></p>
+        <span class="product-cta">詳しく見る</span>
+      </div>
+    </a>
+    <a href="https://otu-shop.stores.jp/" class="product-card fade-in">
+      <div class="product-thumb">
+        <span class="product-thumb-label">NEW</span>
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="position:relative;z-index:1">
+          <ellipse cx="40" cy="55" rx="32" ry="10" fill="rgba(255,255,255,0.06)"/>
+          <path d="M12 36 Q12 64 40 66 Q68 64 68 36 Z" fill="rgba(255,255,255,0.08)" stroke="rgba(168,197,160,0.4)" stroke-width="0.5"/>
+          <ellipse cx="40" cy="36" rx="28" ry="5" fill="rgba(60,110,60,0.5)"/>
+          <line x1="30" y1="35" x2="28" y2="26" stroke="rgba(80,160,80,0.8)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="37" y1="34" x2="36" y2="24" stroke="rgba(80,160,80,0.9)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="44" y1="34" x2="44" y2="23" stroke="rgba(80,160,80,1)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="51" y1="35" x2="52" y2="26" stroke="rgba(80,160,80,0.8)" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-name">水晶入りアーシングポットキット（苔タイプ）</p>
+        <p class="product-price">¥22,800<span>税込・送料無料</span></p>
+        <span class="product-cta">詳しく見る</span>
+      </div>
+    </a>
+    <a href="https://otu-shop.stores.jp/" class="product-card fade-in">
+      <div class="product-thumb">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="position:relative;z-index:1">
+          <ellipse cx="40" cy="55" rx="32" ry="10" fill="rgba(255,255,255,0.06)"/>
+          <path d="M12 36 Q12 64 40 66 Q68 64 68 36 Z" fill="rgba(255,255,255,0.08)" stroke="rgba(168,197,160,0.4)" stroke-width="0.5"/>
+          <ellipse cx="40" cy="36" rx="28" ry="5" fill="rgba(106,140,106,0.5)"/>
+          <line x1="30" y1="35" x2="28" y2="26" stroke="rgba(168,197,160,0.8)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="37" y1="34" x2="36" y2="24" stroke="rgba(168,197,160,0.9)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="44" y1="34" x2="44" y2="23" stroke="rgba(168,197,160,1)" stroke-width="1" stroke-linecap="round"/>
+          <line x1="51" y1="35" x2="52" y2="26" stroke="rgba(168,197,160,0.8)" stroke-width="1" stroke-linecap="round"/>
+          <polygon points="40,40 45,48 40,51 35,48" fill="rgba(200,220,255,0.35)" stroke="rgba(200,220,255,0.6)" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <p class="product-name">選べるパワーストーン入りアーシングポットキット（芝生タイプ）</p>
+        <p class="product-price">¥22,800<span>税込・送料無料</span></p>
+        <span class="product-cta">詳しく見る</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <div class="final-cta-inner fade-in">
+    <h2>今日から、大地と<br>つながる暮らしを。</h2>
+    <p>素足を置くだけで始まる、新しい癒しの習慣。<br>忙しい毎日の中に、ほんの5分の自然時間を。</p>
+    <a href="https://otu-shop.stores.jp/" class="final-cta-btn">今すぐ購入する</a>
+  </div>
+</div>
+
+<footer>
+  <p>© otu-shop　All Rights Reserved.</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
